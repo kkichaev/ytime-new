@@ -1,0 +1,58 @@
+name: ytime-new
+
+services:
+    ytime-new-app:
+        build:
+            context: ./docker/php
+            args:
+            - USER_ID=${USER_UID}
+            - GROUP_ID=${GROUP_GID}
+        container_name: ytime-new-app-c
+        extra_hosts:
+            - host.docker.internal:${HOST_IP:-172.17.0.1}
+        environment:
+            PHP_IDE_CONFIG: ${PHP_IDE_CONFIG:-serverName=docker_ytime}
+            XDEBUG_MODE: ${XDEBUG_MODE:-off}
+            XDEBUG_CONFIG: "client_host=host.docker.internal"
+            XDEBUG_TRIGGER: 'yes'
+        volumes:
+            - ./:/var/www/laravel
+        networks:
+            - app-network
+
+    ytime-new-db:
+        image: mysql:8
+        container_name: ytime-new-db-c
+        command: --sql_mode="" --skip-name-resolve --tls-version="" --mysql-native-password=ON
+#      restart: always
+        ports:
+            - "3306:3306"
+        volumes:
+            - ./docker/mysql/db:/var/lib/mysql
+            - ./docker/mysql/script:/var/lib/mysql_script
+        networks:
+            - app-network
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_DATABASE=ytime_ru
+            - MYSQL_USER=ytime_ru
+            - MYSQL_PASSWORD=password
+            - MYSQL_ROOT_HOST=127.0.0.1
+
+    webserver-new-ytime:
+        image: nginx
+        container_name: ytime-new-nginx-c
+        networks:
+            app-network:
+                aliases:
+                    - main.local
+        volumes:
+            - ./:/var/www/laravel
+            - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+            - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+        ports:
+            - "127.0.0.1:81:80"
+networks:
+    app-network:
+        name: 'shared-network'
+        external: true
