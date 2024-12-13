@@ -11,7 +11,7 @@ services:
         extra_hosts:
             - host.docker.internal:${HOST_IP:-172.17.0.1}
         environment:
-            PHP_IDE_CONFIG: ${PHP_IDE_CONFIG:-serverName=docker_ytime}
+            PHP_IDE_CONFIG: ${PHP_IDE_CONFIG:-serverName=docker_ytime_new}
             XDEBUG_MODE: ${XDEBUG_MODE:-off}
             XDEBUG_CONFIG: "client_host=host.docker.internal"
             XDEBUG_TRIGGER: 'yes'
