@@ -58,7 +58,7 @@ class EventsPlacesProvider extends ServiceProvider
     public function boot(): void
     {
         $this
-            ->setNamespace('plugins/events-and-places')
+            ->setNamespace('plugins/events-places')
             ->loadHelpers()
             ->loadAndPublishConfigurations(['permissions', 'general'])
             ->loadAndPublishViews()
@@ -82,9 +82,9 @@ class EventsPlacesProvider extends ServiceProvider
         });
 
         SlugHelper::registering(function (): void {
-            SlugHelper::registerModule(Post::class, fn () => trans('plugins/events-and-places::base.events-and-places'));
-            SlugHelper::registerModule(Category::class, fn () => trans('plugins/events-and-places::base.events-and-places_categories'));
-            SlugHelper::registerModule(Tag::class, fn () => trans('plugins/events-and-places::base.events-and-places_tags'));
+            SlugHelper::registerModule(Post::class, fn () => trans('plugins/events-places::base.events-places'));
+            SlugHelper::registerModule(Category::class, fn () => trans('plugins/events-places::base.events-and-places_categories'));
+            SlugHelper::registerModule(Tag::class, fn () => trans('plugins/events-places::base.events-and-places_tags'));
 
             SlugHelper::setPrefix(Tag::class, 'tag', true);
             SlugHelper::setPrefix(Post::class, null, true);
@@ -95,35 +95,35 @@ class EventsPlacesProvider extends ServiceProvider
             DashboardMenu::make()
                 ->registerItem(
                     DashboardMenuItem::make()
-                        ->id('cms-plugins-events-and-places')
+                        ->id('cms-plugins-events-places')
                         ->priority(2)
-                        ->name('plugins/events-and-places::base.menu_name')
+                        ->name('plugins/events-places::base.menu_name')
                         ->icon('ti ti-article')
                 )
                 ->registerItem(
                     DashboardMenuItem::make()
-                        ->id('cms-plugins-events-and-places-post')
+                        ->id('cms-plugins-events-places-post')
                         ->priority(10)
-                        ->parentId('cms-plugins-events-and-places')
-                        ->name('plugins/events-and-places::posts.menu_name')
+                        ->parentId('cms-plugins-events-places')
+                        ->name('plugins/events-places::posts.menu_name')
                         ->icon('ti ti-file-text')
                         ->route('ev-posts.index')
                 )
                 ->registerItem(
                     DashboardMenuItem::make()
-                        ->id('cms-plugins-events-and-places-categories')
+                        ->id('cms-plugins-events-places-categories')
                         ->priority(20)
-                        ->parentId('cms-plugins-events-and-places')
-                        ->name('plugins/events-and-places::categories.menu_name')
+                        ->parentId('cms-plugins-events-places')
+                        ->name('plugins/events-places::categories.menu_name')
                         ->icon('ti ti-folder')
                         ->route('ev-categories.index')
                 )
                 ->registerItem(
                     DashboardMenuItem::make()
-                        ->id('cms-plugins-events-and-places-tags')
+                        ->id('cms-plugins-events-places-tags')
                         ->priority(30)
-                        ->parentId('cms-plugins-events-and-places')
-                        ->name('plugins/events-and-places::tags.menu_name')
+                        ->parentId('cms-plugins-events-places')
+                        ->name('plugins/events-places::tags.menu_name')
                         ->icon('ti ti-tag')
                         ->route('ev-tags.index')
                 );
@@ -135,9 +135,9 @@ class EventsPlacesProvider extends ServiceProvider
                 fn () => PanelSectionItem::make('blog')
                     ->setTitle(trans('plugins/events-places::base.settings.title'))
                     ->withIcon('ti ti-file-settings')
-                    ->withDescription(trans('plugins/events-and-places::base.settings.description'))
+                    ->withDescription(trans('plugins/events-places::base.settings.description'))
                     ->withPriority(120)
-                    ->withRoute('events-and-places.settings')
+                    ->withRoute('events-places.settings')
             );
         });
 
@@ -146,8 +146,8 @@ class EventsPlacesProvider extends ServiceProvider
                 ->registerItem(
                     ExportPanelSection::class,
                     fn () => PanelSectionItem::make('posts')
-                        ->setTitle(trans('plugins/events-and-places::posts.posts'))
-                        ->withDescription(trans('plugins/events-and-places::ev-posts.export.description'))
+                        ->setTitle(trans('plugins/events-places::posts.posts'))
+                        ->withDescription(trans('plugins/events-places::ev-posts.export.description'))
                         ->withPriority(999)
                         ->withPermission('ev-posts.export')
                         ->withRoute('tools.data-synchronize.export.ev-posts.index')
@@ -155,8 +155,8 @@ class EventsPlacesProvider extends ServiceProvider
                 ->registerItem(
                     ImportPanelSection::class,
                     fn () => PanelSectionItem::make('posts')
-                        ->setTitle(trans('plugins/events-and-places::posts.posts'))
-                        ->withDescription(trans('plugins/events-and-places::ev-posts.import.description'))
+                        ->setTitle(trans('plugins/events-places::posts.posts'))
+                        ->withDescription(trans('plugins/events-places::ev-posts.import.description'))
                         ->withPriority(999)
                         ->withPermission('ev-posts.import')
                         ->withRoute('tools.data-synchronize.import.ev-posts.index')
@@ -166,7 +166,7 @@ class EventsPlacesProvider extends ServiceProvider
         if (defined('LANGUAGE_MODULE_SCREEN_NAME') && defined('LANGUAGE_ADVANCED_MODULE_SCREEN_NAME')) {
             if (
                 defined('LANGUAGE_ADVANCED_MODULE_SCREEN_NAME') &&
-                $this->app['config']->get('plugins.events-and-places.general.use_language_v2')
+                $this->app['config']->get('plugins.events-places.general.use_language_v2')
             ) {
                 LanguageAdvancedManager::registerModule(Post::class, [
                     'name',
@@ -207,9 +207,9 @@ class EventsPlacesProvider extends ServiceProvider
 
         if (function_exists('shortcode')) {
             view()->composer([
-                'plugins/events-and-places::themes.post',
-                'plugins/events-and-places::themes.category',
-                'plugins/events-and-places::themes.tag',
+                'plugins/events-places::themes.post',
+                'plugins/events-places::themes.category',
+                'plugins/events-places::themes.tag',
             ], function (View $view): void {
                 $view->withShortcodes();
             });

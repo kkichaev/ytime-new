@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['namespace' => 'Botble\EventsPlaces\Http\Controllers'], function (): void {
     AdminHelper::registerRoutes(function (): void {
-        Route::group(['prefix' => 'events-and-places'], function (): void {
+        Route::group(['prefix' => 'events-places'], function (): void {
             Route::group(['prefix' => 'ev-posts', 'as' => 'ev-posts.'], function (): void {
                 Route::resource('', 'PostController')
                     ->parameters(['' => 'post']);
