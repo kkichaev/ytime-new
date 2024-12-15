@@ -32,10 +32,10 @@ class Posts extends AbstractWidget
         $limit = (int) Arr::get($config, 'number_display', Arr::get($config, 'limit', 3));
 
         $posts = match (Arr::get($config, 'type')) {
-            'featured' => get_featured_posts($limit),
-            'popular' => get_popular_posts($limit),
-            'recent' => get_recent_posts($limit),
-            default => get_latest_posts($limit),
+            'featured' => ev_get_featured_posts($limit),
+            'popular' => ev_get_popular_posts($limit),
+            'recent' => ev_get_recent_posts($limit),
+            default => ev_get_latest_posts($limit),
         };
 
         return compact('posts');

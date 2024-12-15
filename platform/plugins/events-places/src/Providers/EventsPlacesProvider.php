@@ -82,7 +82,7 @@ class EventsPlacesProvider extends ServiceProvider
         });
 
         SlugHelper::registering(function (): void {
-            SlugHelper::registerModule(Post::class, fn () => trans('plugins/events-places::base.events-places'));
+            SlugHelper::registerModule(Post::class, fn () => trans('plugins/events-places::base.events-places-posts'));
             SlugHelper::registerModule(Category::class, fn () => trans('plugins/events-places::base.events-and-places_categories'));
             SlugHelper::registerModule(Tag::class, fn () => trans('plugins/events-places::base.events-and-places_tags'));
 

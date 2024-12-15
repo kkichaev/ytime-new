@@ -55,7 +55,7 @@ class Category extends BaseModel implements HasTreeCategoryContract
 
     public function posts(): BelongsToMany
     {
-        return $this->belongsToMany(Post::class, 'ev_post_categories')->with('slugable');
+        return $this->belongsToMany(Post::class, 'ev_post_categories', 'ev_category_id', 'ev_post_id')->with('slugable');
     }
 
     public function parent(): BelongsTo
@@ -123,8 +123,8 @@ class Category extends BaseModel implements HasTreeCategoryContract
             }
 
             $postsCount = DB::table('ev_post_categories')
-                ->whereIn('category_id', $categoryIds)
-                ->distinct('post_id')
+                ->whereIn('ev_category_id', $categoryIds)
+                ->distinct('ev_post_id')
                 ->count();
 
             return Html::link($this->url, sprintf('(%s)', $postsCount), [

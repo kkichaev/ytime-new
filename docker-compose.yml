@@ -8,8 +8,11 @@ services:
             - USER_ID=${USER_UID}
             - GROUP_ID=${GROUP_GID}
         container_name: ytime-new-app-c
+#        extra_hosts:
+#            - host.docker.internal:${HOST_IP:-172.17.0.1}
         extra_hosts:
-            - host.docker.internal:${HOST_IP:-172.17.0.1}
+          - "host.docker.internal:host-gateway"
+
         environment:
             PHP_IDE_CONFIG: ${PHP_IDE_CONFIG:-serverName=docker_ytime_new}
             XDEBUG_MODE: ${XDEBUG_MODE:-off}

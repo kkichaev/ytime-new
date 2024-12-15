@@ -42,7 +42,7 @@ class PostForm extends FormAbstract
             )
             ->add('content', EditorField::class, ContentFieldOption::make()->allowedShortcodes())
             ->add('status', SelectField::class, StatusFieldOption::make())
-            ->when(get_post_formats(true), function (PostForm $form, array $postFormats): void {
+            ->when(ev_get_post_formats(true), function (PostForm $form, array $postFormats): void {
                 if (count($postFormats) > 1) {
                     $choices = [];
 
@@ -79,7 +79,7 @@ class PostForm extends FormAbstract
                          */
                         $post = $this->getModel();
 
-                        return $fieldOption->selected($post->categories()->pluck('category_id')->all());
+                        return $fieldOption->selected($post->categories()->pluck('ev_category_id')->all());
                     }, function (SelectFieldOption $fieldOption) {
                         return $fieldOption
                             ->selected(

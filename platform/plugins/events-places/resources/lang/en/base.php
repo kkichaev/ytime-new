@@ -18,7 +18,7 @@ return [
         'enable_blog_post_schema_description' => 'Learn more: https://schema.org/Article',
         'schema_type' => 'Schema type',
     ],
-    'blog_posts' => 'Blog posts',
-    'blog_categories' => 'Blog categories',
-    'blog_tags' => 'Blog tags',
+    'events-places-posts' => 'Events places posts',
+    'events-and-places_categories' => 'Events places categories',
+    'events-and-places_tags' => 'Events places tags',
 ];

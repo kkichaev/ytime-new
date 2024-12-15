@@ -177,7 +177,7 @@ class BlogService
                     );
                 }
 
-                $posts = get_posts_by_tag($tag->getKey(), (int) theme_option('number_of_posts_in_a_tag', 12));
+                $posts = ev_get_posts_by_category($tag->getKey(), (int) theme_option('number_of_posts_in_a_tag', 12));
 
                 Theme::breadcrumb()->add($tag->name, $tag->url);
 

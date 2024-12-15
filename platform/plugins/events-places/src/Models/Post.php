@@ -61,12 +61,12 @@ class Post extends BaseModel
 
     public function tags(): BelongsToMany
     {
-        return $this->belongsToMany(Tag::class, 'ev_post_tags');
+        return $this->belongsToMany(Tag::class, 'ev_post_tags', 'ev_post_id', 'ev_tag_id');
     }
 
     public function categories(): BelongsToMany
     {
-        return $this->belongsToMany(Category::class, 'ev_post_categories');
+        return $this->belongsToMany(Category::class, 'ev_post_categories', 'ev_post_id', 'ev_category_id');
     }
 
     public function author(): MorphTo

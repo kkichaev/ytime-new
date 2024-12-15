@@ -287,7 +287,7 @@ class HookServiceProvider extends ServiceProvider
             }
 
             return view($view, [
-                'posts' => get_all_posts(true, (int) theme_option('number_of_posts_in_a_category', 12)),
+                'posts' => ev_get_all_posts(true, (int) theme_option('number_of_posts_in_a_category', 12)),
             ])->render();
         }
 

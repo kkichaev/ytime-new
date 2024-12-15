@@ -49,13 +49,13 @@ return new class () extends Migration {
         });
 
         Schema::create('ev_post_tags', function (Blueprint $table): void {
-            $table->foreignId('tag_id')->index();
-            $table->foreignId('post_id')->index();
+            $table->foreignId('ev_tag_id')->index();
+            $table->foreignId('ev_post_id')->index();
         });
 
         Schema::create('ev_post_categories', function (Blueprint $table): void {
-            $table->foreignId('category_id')->index();
-            $table->foreignId('post_id')->index();
+            $table->foreignId('ev_category_id')->index();
+            $table->foreignId('ev_post_id')->index();
         });
     }
 

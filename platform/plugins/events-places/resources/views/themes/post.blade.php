@@ -27,7 +27,7 @@
 <br />
 {!! apply_filters(BASE_FILTER_PUBLIC_COMMENT_AREA, null, $post) !!}
 
-@php $relatedPosts = get_related_posts($post->getKey(), 2); @endphp
+@php $relatedPosts = ev_get_related_posts($post->getKey(), 2); @endphp
 
 @if ($relatedPosts->isNotEmpty())
     <footer>
