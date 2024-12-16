@@ -17,7 +17,7 @@ return [
     ],
     'cannot_delete' => 'Post could not be deleted',
     'post_deleted' => 'Post deleted',
-    'posts' => 'Posts',
+    'posts' => 'Events Places Posts',
     'post' => 'Post',
     'edit_this_post' => 'Edit this post',
     'no_new_post_now' => 'There is no new post now!',

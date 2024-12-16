@@ -10,6 +10,8 @@ use Botble\Base\PanelSections\PanelSectionItem;
 use Botble\Base\Supports\DashboardMenuItem;
 use Botble\Base\Supports\ServiceProvider;
 use Botble\Base\Traits\LoadAndPublishDataTrait;
+use Botble\DataSynchronize\PanelSections\ExportPanelSection;
+use Botble\DataSynchronize\PanelSections\ImportPanelSection;
 use Botble\EventsPlaces\Models\Category;
 use Botble\EventsPlaces\Models\Post;
 use Botble\EventsPlaces\Models\Tag;
@@ -19,8 +21,6 @@ use Botble\EventsPlaces\Repositories\Eloquent\TagRepository;
 use Botble\EventsPlaces\Repositories\Interfaces\CategoryInterface;
 use Botble\EventsPlaces\Repositories\Interfaces\PostInterface;
 use Botble\EventsPlaces\Repositories\Interfaces\TagInterface;
-use Botble\DataSynchronize\PanelSections\ExportPanelSection;
-use Botble\DataSynchronize\PanelSections\ImportPanelSection;
 use Botble\Language\Facades\Language;
 use Botble\LanguageAdvanced\Supports\LanguageAdvancedManager;
 use Botble\PluginManagement\Events\DeactivatedPlugin;
@@ -132,7 +132,7 @@ class EventsPlacesProvider extends ServiceProvider
         PanelSectionManager::default()->beforeRendering(function (): void {
             PanelSectionManager::registerItem(
                 SettingOthersPanelSection::class,
-                fn () => PanelSectionItem::make('blog')
+                fn () => PanelSectionItem::make('events-places')
                     ->setTitle(trans('plugins/events-places::base.settings.title'))
                     ->withIcon('ti ti-file-settings')
                     ->withDescription(trans('plugins/events-places::base.settings.description'))
@@ -226,5 +226,19 @@ class EventsPlacesProvider extends ServiceProvider
                 }
             }
         );
+
+        app()->booted(function () {
+            if (defined('CUSTOM_FIELD_MODULE_SCREEN_NAME')) {
+                \Botble\CustomField\Facades\CustomField::registerModule(Post::class)
+                    ->registerRule('events-places', ('Post'), Post::class, function () {
+                        return Post::query()->pluck('name', 'id')->all();
+                    })
+                    ->expandRule('other', 'Model', 'model_name', function () {
+                        return [
+                            Post::class => ('Post'),
+                        ];
+                    });
+            }
+        });
     }
 }

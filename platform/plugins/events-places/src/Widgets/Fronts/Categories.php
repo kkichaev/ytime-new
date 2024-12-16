@@ -17,7 +17,7 @@ class Categories extends AbstractWidget
     public function __construct()
     {
         parent::__construct([
-            'name' => __('Blog Categories'),
+            'name' => __('Events Places Categories'),
             'description' => __('Widget display blog categories'),
             'display_posts_count' => 'yes',
             'category_ids' => [],

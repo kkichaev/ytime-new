@@ -5,6 +5,7 @@ return [
         'basic' => 'Basic',
         'other' => 'Other',
         'blog' => 'Blog',
+        'events-places' => 'Events Places'
     ],
 
     'logged_in_user' => 'Logged in user',

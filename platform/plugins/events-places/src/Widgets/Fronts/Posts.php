@@ -18,7 +18,7 @@ class Posts extends AbstractWidget
     public function __construct()
     {
         parent::__construct([
-            'name' => __('Blog Posts'),
+            'name' => __('Events Places Posts'),
             'description' => __('Display blog posts'),
             'number_display' => 3,
             'type' => '',
