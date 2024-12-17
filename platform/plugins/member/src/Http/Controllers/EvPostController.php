@@ -5,23 +5,23 @@ namespace Botble\Member\Http\Controllers;
 use Botble\Base\Enums\BaseStatusEnum;
 use Botble\Base\Facades\EmailHandler;
 use Botble\Base\Http\Controllers\BaseController;
-use Botble\Blog\Models\Post;
-use Botble\Blog\Models\Tag;
-use Botble\Blog\Services\StoreCategoryService;
-use Botble\Blog\Services\StoreTagService;
+use Botble\EventsPlaces\Models\Post;
+use Botble\EventsPlaces\Models\Tag;
+use Botble\EventsPlaces\Services\StoreCategoryService;
+use Botble\EventsPlaces\Services\StoreTagService;
 use Botble\Media\Facades\RvMedia;
-use Botble\Member\Forms\PostForm;
+use Botble\Member\Forms\EvPostForm;
 use Botble\Member\Http\Requests\PostRequest;
 use Botble\Member\Models\Member;
 use Botble\Member\Models\MemberActivityLog;
-use Botble\Member\Tables\PostTable;
+use Botble\Member\Tables\EvPostTable;
 use Illuminate\Http\Request;
 
-class PostController extends BaseController
+class EvPostController extends BaseController
 {
-    public function index(PostTable $postTable)
+    public function index(EvPostTable $postTable)
     {
-        $this->pageTitle(trans('plugins/blog::posts.posts'));
+        $this->pageTitle(trans('plugins/events-places::posts.posts'));
 
         return $postTable->renderTable();
     }
@@ -30,16 +30,16 @@ class PostController extends BaseController
     {
         $this->pageTitle(trans('plugins/member::member.write_a_post'));
 
-        return PostForm::create()->renderForm();
+        return EvPostForm::create()->renderForm();
     }
 
-    public function store(PostRequest $request, StoreTagService $tagService, EvStoreCategoryService $categoryService)
+    public function store(PostRequest $request, StoreTagService $tagService, StoreCategoryService $categoryService)
     {
         $this->processRequestData($request);
 
-        $postForm = PostForm::create();
+        $postForm = EvPostForm::create();
         $postForm
-            ->saving(function (PostForm $form) use ($categoryService, $tagService, $request): void {
+            ->saving(function (EvPostForm $form) use ($categoryService, $tagService, $request): void {
                 /**
                  * @var Post $post
                  */
@@ -55,7 +55,7 @@ class PostController extends BaseController
                 MemberActivityLog::query()->create([
                     'action' => 'create_post',
                     'reference_name' => $post->name,
-                    'reference_url' => route('public.member.posts.edit', $post->getKey()),
+                    'reference_url' => route('public.member.ev-posts.edit', $post->getKey()),
                 ]);
 
                 $tagService->execute($request, $post);
@@ -65,7 +65,7 @@ class PostController extends BaseController
                 EmailHandler::setModule(MEMBER_MODULE_SCREEN_NAME)
                     ->setVariableValues([
                         'post_name' => $post->name,
-                        'post_url' => route('posts.edit', $post->getKey()),
+                        'post_url' => route('ev-posts.edit', $post->getKey()),
                         'post_author' => $post->author->name,
                     ])
                     ->sendUsingTemplate('new-pending-post');
@@ -73,8 +73,8 @@ class PostController extends BaseController
 
         return $this
             ->httpResponse()
-            ->setPreviousRoute('public.member.posts.index')
-            ->setNextRoute('public.member.posts.edit', $postForm->getModel()->getKey())
+            ->setPreviousRoute('public.member.ev-posts.index')
+            ->setNextRoute('public.member.ev-posts.edit', $postForm->getModel()->getKey())
             ->withCreatedSuccessMessage();
     }
 
@@ -93,7 +93,7 @@ class PostController extends BaseController
 
         $this->pageTitle(trans('core/base::forms.edit_item', ['name' => $post->name]));
 
-        return PostForm::createFromModel($post)->setFormOption('template', 'plugins/member::forms.base')->renderForm();
+        return EvPostForm::createFromModel($post)->setFormOption('template', 'plugins/member::forms.base')->renderForm();
     }
 
     public function update(Post $post, PostRequest $request, StoreTagService $tagService, StoreCategoryService $categoryService)
@@ -111,10 +111,10 @@ class PostController extends BaseController
 
         $this->processRequestData($request);
 
-        $postForm = PostForm::createFromModel($post);
+        $postForm = EvPostForm::createFromModel($post);
 
         $postForm
-            ->saving(function (PostForm $form) use ($categoryService, $tagService, $request): void {
+            ->saving(function (EvPostForm $form) use ($categoryService, $tagService, $request): void {
                 /**
                  * @var Post $post
                  */
@@ -127,7 +127,7 @@ class PostController extends BaseController
                 MemberActivityLog::query()->create([
                     'action' => 'update_post',
                     'reference_name' => $post->name,
-                    'reference_url' => route('public.member.posts.edit', $post->getKey()),
+                    'reference_url' => route('public.member.ev-posts.edit', $post->getKey()),
                 ]);
 
                 $tagService->execute($request, $post);
@@ -137,7 +137,7 @@ class PostController extends BaseController
 
         return $this
             ->httpResponse()
-            ->setPreviousRoute('public.member.posts.index')
+            ->setPreviousRoute('public.member.ev-posts.index')
             ->withUpdatedSuccessMessage();
     }
 

@@ -124,13 +124,13 @@ if (defined('THEME_MODULE_SCREEN_NAME')) {
                     'prefix' => 'account/ev-posts',
                     'as' => 'ev-posts.',
                 ], function (): void {
-                    Route::resource('', 'PostController')->parameters(['' => 'post']);
+                    Route::resource('', 'EvPostController')->parameters(['' => 'post']);
                 });
 
                 Route::group(['prefix' => 'ajax/members'], function (): void {
                     Route::get('tags/all', [
                         'as' => 'tags.all',
-                        'uses' => 'PostController@getAllTags',
+                        'uses' => 'EvPostController@getAllTags',
                     ]);
                 });
             }
