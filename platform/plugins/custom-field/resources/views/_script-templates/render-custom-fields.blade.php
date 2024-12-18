@@ -24,6 +24,35 @@
            class="form-control">
 </x-core::custom-template>
 
+
+<x-core::custom-template id="_render_custom_field_cycle_template">
+    <input type="text"
+           value="__value__"
+           placeholder="__placeholderText__"
+           class="form-control">
+</x-core::custom-template>
+
+<x-core::custom-template id="_render_custom_field_date_template">
+    <input type="text"
+           value="__value__"
+           placeholder="__placeholderText__"
+           class="form-control">
+</x-core::custom-template>
+
+<x-core::custom-template id="_render_custom_field_time_template">
+    <input type="text"
+           value="__value__"
+           placeholder="__placeholderText__"
+           class="form-control">
+</x-core::custom-template>
+
+<x-core::custom-template id="_render_custom_field_date_time_template">
+    <input type="text"
+           value="__value__"
+           placeholder="__placeholderText__"
+           class="form-control">
+</x-core::custom-template>
+
 <x-core::custom-template id="_render_custom_field_number_template">
     <input type="number"
            value="__value__"

@@ -262,7 +262,7 @@ class HookServiceProvider extends ServiceProvider
             ->with(['slugable', 'categories.slugable'])
             ->when(! empty($categoryIds), function ($query) use ($categoryIds): void {
                 $query->whereHas('categories', function ($query) use ($categoryIds): void {
-                    $query->whereIn('categories.id', $categoryIds);
+                    $query->whereIn('ev_categories.id', $categoryIds);
                 });
             })
             ->paginate((int) $shortcode->paginate ?: 12);

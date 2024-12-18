@@ -9,24 +9,24 @@ const dist = 'public/vendor/core/plugins/' + directory;
 const filterCss = [];
 
 if (mix.inProduction()) {
-    filterCss.push(
-        purgeCss({
-            content: [
-                source + '/resources/views/**/*.blade.php',
-                source + '/resources/assets/js/components/*.vue',
-                source + '/resources/assets/js/components/**/*.vue',
-            ],
-            defaultExtractor: content => content.match(/[\w-/.:]+(?<!:)/g) || [],
-            safelist: [
-                /active/,
-                /show/,
-                /down/,
-                /loading/,
-                /^bb-dialog/
-
-            ]
-        })
-    )
+    // filterCss.push(
+    //     purgeCss({
+    //         content: [
+    //             source + '/resources/views/**/*.blade.php',
+    //             source + '/resources/assets/js/components/*.vue',
+    //             source + '/resources/assets/js/components/**/*.vue',
+    //         ],
+    //         defaultExtractor: content => content.match(/[\w-/.:]+(?<!:)/g) || [],
+    //         safelist: [
+    //             /active/,
+    //             /show/,
+    //             /down/,
+    //             /loading/,
+    //             /^bb-dialog/
+    //
+    //         ]
+    //     })
+    // )
 }
 
 mix

@@ -10,6 +10,7 @@ use Botble\Base\PanelSections\PanelSectionItem;
 use Botble\Base\Supports\DashboardMenuItem;
 use Botble\Base\Supports\ServiceProvider;
 use Botble\Base\Traits\LoadAndPublishDataTrait;
+use Botble\CustomField\Facades\CustomField as CustomFieldFacade;
 use Botble\DataSynchronize\PanelSections\ExportPanelSection;
 use Botble\DataSynchronize\PanelSections\ImportPanelSection;
 use Botble\EventsPlaces\Models\Category;
@@ -229,16 +230,50 @@ class EventsPlacesProvider extends ServiceProvider
 
         app()->booted(function () {
             if (defined('CUSTOM_FIELD_MODULE_SCREEN_NAME')) {
-                \Botble\CustomField\Facades\CustomField::registerModule(Post::class)
-                    ->registerRule('events-places', ('Post'), Post::class, function () {
-                        return Post::query()->pluck('name', 'id')->all();
-                    })
-                    ->expandRule('other', 'Model', 'model_name', function () {
-                        return [
-                            Post::class => ('Post'),
-                        ];
-                    });
+                CustomFieldFacade::registerRuleGroup('events-places')
+                ->registerRule('events-places', trans('plugins/custom-field::rules.category'), Category::class, function () {
+                    return $this->getBlogCategoryIds();
+                })
+                ->registerRule(
+                    'events-places',
+                    trans('plugins/custom-field::rules.post_with_related_category'),
+                    Post::class . '_post_with_related_category',
+                    function () {
+                        return $this->getBlogCategoryIds();
+                    }
+                )
+                ->registerRule(
+                    'events-places',
+                    trans('plugins/custom-field::rules.post_format'),
+                    Post::class . '_post_format',
+                    function () {
+                        $formats = [];
+                        foreach (get_post_formats() as $key => $format) {
+                            $formats[$key] = $format['name'];
+                        }
+
+                        return $formats;
+                    }
+                )
+                ->expandRule('other', trans('plugins/custom-field::rules.model_name'), 'model_name', function () {
+                    return [
+                        Post::class => trans('plugins/custom-field::rules.model_name_post'),
+                        Category::class => trans('plugins/custom-field::rules.model_name_category'),
+                    ];
+                });
             }
         });
+    }
+
+    protected function getBlogCategoryIds(): array
+    {
+        $categories = ev_get_categories();
+
+        $categoriesArr = [];
+        foreach ($categories as $row) {
+            $categoriesArr[$row->id] = $row->indent_text . ' ' . $row->name;
+        }
+
+        return $categoriesArr;
     }
 }
