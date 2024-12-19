@@ -62,16 +62,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.334.4",
+            "version": "3.334.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "3261e515cfc1bae024bce72be3ea28708461c0a3"
+                "reference": "2b0be3aded849d3b7bb0b53ea3295c7cecdeeee7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/3261e515cfc1bae024bce72be3ea28708461c0a3",
-                "reference": "3261e515cfc1bae024bce72be3ea28708461c0a3",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/2b0be3aded849d3b7bb0b53ea3295c7cecdeeee7",
+                "reference": "2b0be3aded849d3b7bb0b53ea3295c7cecdeeee7",
                 "shasum": ""
             },
             "require": {
@@ -154,9 +154,9 @@
             "support": {
                 "forum": "https://forums.aws.amazon.com/forum.jspa?forumID=80",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.334.4"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.334.6"
             },
-            "time": "2024-12-11T19:41:47+00:00"
+            "time": "2024-12-13T19:18:29+00:00"
         },
         {
             "name": "barryvdh/laravel-dompdf",
@@ -237,24 +237,24 @@
         },
         {
             "name": "botble/api",
-            "version": "2.0.14",
+            "version": "2.0.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/botble/api.git",
-                "reference": "9f5835f76ad0bba87500fa2e24632f6744e53d6e"
+                "reference": "6d9af4d9f0732e5f24425742ec7046819b99651d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/botble/api/zipball/9f5835f76ad0bba87500fa2e24632f6744e53d6e",
-                "reference": "9f5835f76ad0bba87500fa2e24632f6744e53d6e",
+                "url": "https://api.github.com/repos/botble/api/zipball/6d9af4d9f0732e5f24425742ec7046819b99651d",
+                "reference": "6d9af4d9f0732e5f24425742ec7046819b99651d",
                 "shasum": ""
             },
             "require": {
                 "knuckleswtf/scribe": "^4.22"
             },
             "require-dev": {
-                "laravel/pint": "^1.4.0",
-                "phpunit/phpunit": "^9.0|^10.0"
+                "laravel/pint": "^1.5.0",
+                "phpunit/phpunit": "^9.0|^10.0|^11.0"
             },
             "type": "package",
             "extra": {
@@ -292,9 +292,9 @@
             ],
             "support": {
                 "issues": "https://github.com/botble/api/issues",
-                "source": "https://github.com/botble/api/tree/2.0.14"
+                "source": "https://github.com/botble/api/tree/2.0.15"
             },
-            "time": "2024-12-08T04:17:30+00:00"
+            "time": "2024-12-14T03:46:09+00:00"
         },
         {
             "name": "botble/assets",
@@ -2689,20 +2689,20 @@
         },
         {
             "name": "google/longrunning",
-            "version": "0.4.5",
+            "version": "0.4.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/php-longrunning.git",
-                "reference": "062eab0f3b9310da9498bfe20b273f074580b916"
+                "reference": "4eb04d47bba8095d5a47f75334b9204c2a4a7ac6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/php-longrunning/zipball/062eab0f3b9310da9498bfe20b273f074580b916",
-                "reference": "062eab0f3b9310da9498bfe20b273f074580b916",
+                "url": "https://api.github.com/repos/googleapis/php-longrunning/zipball/4eb04d47bba8095d5a47f75334b9204c2a4a7ac6",
+                "reference": "4eb04d47bba8095d5a47f75334b9204c2a4a7ac6",
                 "shasum": ""
             },
             "require-dev": {
-                "google/gax": "^1.34.0",
+                "google/gax": "^1.36.0",
                 "phpunit/phpunit": "^9.0"
             },
             "type": "library",
@@ -2727,9 +2727,9 @@
             ],
             "description": "Google LongRunning Client for PHP",
             "support": {
-                "source": "https://github.com/googleapis/php-longrunning/tree/v0.4.5"
+                "source": "https://github.com/googleapis/php-longrunning/tree/v0.4.6"
             },
-            "time": "2024-11-16T00:28:46+00:00"
+            "time": "2024-12-12T21:15:35+00:00"
         },
         {
             "name": "google/protobuf",
@@ -10369,16 +10369,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v3.17.0",
+            "version": "v3.17.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "d3a64b742a5e74c57e3964d766e1032982145872"
+                "reference": "677ef8da6497a03048192aeeb5aa3018e379ac71"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/d3a64b742a5e74c57e3964d766e1032982145872",
-                "reference": "d3a64b742a5e74c57e3964d766e1032982145872",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/677ef8da6497a03048192aeeb5aa3018e379ac71",
+                "reference": "677ef8da6497a03048192aeeb5aa3018e379ac71",
                 "shasum": ""
             },
             "require": {
@@ -10433,7 +10433,7 @@
             ],
             "support": {
                 "issues": "https://github.com/twigphp/Twig/issues",
-                "source": "https://github.com/twigphp/Twig/tree/v3.17.0"
+                "source": "https://github.com/twigphp/Twig/tree/v3.17.1"
             },
             "funding": [
                 {
@@ -10445,7 +10445,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-12-10T15:19:11+00:00"
+            "time": "2024-12-12T09:58:10+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -10755,13 +10755,13 @@
             },
             "type": "library",
             "extra": {
-                "branch-alias": {
-                    "dev-master": "10.0-dev"
-                },
                 "laravel": {
                     "providers": [
                         "Yajra\\DataTables\\ButtonsServiceProvider"
                     ]
+                },
+                "branch-alias": {
+                    "dev-master": "10.0-dev"
                 }
             },
             "autoload": {
@@ -11050,24 +11050,24 @@
         },
         {
             "name": "botble/dev-tool",
-            "version": "1.0.9",
+            "version": "1.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/botble/dev-tool.git",
-                "reference": "f4ecb7556e8399ddb681f3f6417725ce79697f40"
+                "reference": "2a8d39be2bfb54bd29da7cccd273dc680d1ad9bd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/botble/dev-tool/zipball/f4ecb7556e8399ddb681f3f6417725ce79697f40",
-                "reference": "f4ecb7556e8399ddb681f3f6417725ce79697f40",
+                "url": "https://api.github.com/repos/botble/dev-tool/zipball/2a8d39be2bfb54bd29da7cccd273dc680d1ad9bd",
+                "reference": "2a8d39be2bfb54bd29da7cccd273dc680d1ad9bd",
                 "shasum": ""
             },
             "require": {
                 "laravel/framework": "^10.31|^11.0"
             },
             "require-dev": {
-                "laravel/pint": "^1.4.0",
-                "phpunit/phpunit": "^9.0|^10.0"
+                "laravel/pint": "^1.5.0",
+                "phpunit/phpunit": "^9.0|^10.0|^11.0"
             },
             "type": "package",
             "extra": {
@@ -11102,31 +11102,31 @@
             ],
             "support": {
                 "issues": "https://github.com/botble/dev-tool/issues",
-                "source": "https://github.com/botble/dev-tool/tree/1.0.9"
+                "source": "https://github.com/botble/dev-tool/tree/1.0.10"
             },
-            "time": "2024-09-20T08:03:04+00:00"
+            "time": "2024-12-14T03:43:46+00:00"
         },
         {
             "name": "botble/git-commit-checker",
-            "version": "2.1.5",
+            "version": "2.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/botble/git-commit-checker.git",
-                "reference": "31dea88639c8d9828fef9874e502a9723ddce645"
+                "reference": "3235de95fa440c106b4456e86b39393f0b308cbc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/botble/git-commit-checker/zipball/31dea88639c8d9828fef9874e502a9723ddce645",
-                "reference": "31dea88639c8d9828fef9874e502a9723ddce645",
+                "url": "https://api.github.com/repos/botble/git-commit-checker/zipball/3235de95fa440c106b4456e86b39393f0b308cbc",
+                "reference": "3235de95fa440c106b4456e86b39393f0b308cbc",
                 "shasum": ""
             },
             "require": {
                 "laravel/framework": "^9.32|^10.0||^11.0",
                 "laravel/pint": "^1.5",
-                "php": "^8.0|^8.1|^8.2"
+                "php": "^8.0|^8.1|^8.2|^8.3"
             },
             "require-dev": {
-                "phpunit/phpunit": "^9.0|^10.0"
+                "phpunit/phpunit": "^9.0|^10.0|^11.0"
             },
             "type": "package",
             "extra": {
@@ -11161,9 +11161,9 @@
             ],
             "support": {
                 "issues": "https://github.com/botble/git-commit-checker/issues",
-                "source": "https://github.com/botble/git-commit-checker/tree/2.1.5"
+                "source": "https://github.com/botble/git-commit-checker/tree/2.1.6"
             },
-            "time": "2024-06-29T08:41:47+00:00"
+            "time": "2024-12-14T03:42:10+00:00"
         },
         {
             "name": "driftingly/rector-laravel",
