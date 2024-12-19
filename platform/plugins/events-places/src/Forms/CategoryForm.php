@@ -56,7 +56,7 @@ class CategoryForm extends FormAbstract
                         }
 
                         $categories = [];
-                        foreach (get_categories(['condition' => []]) as $row) {
+                        foreach (ev_get_categories(['condition' => []]) as $row) {
                             if ($modelId && ($modelId === $row->id || $modelId === $row->parent_id)) {
                                 continue;
                             }

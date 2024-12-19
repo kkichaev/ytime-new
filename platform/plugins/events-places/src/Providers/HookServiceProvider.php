@@ -262,7 +262,7 @@ class HookServiceProvider extends ServiceProvider
             ->with(['slugable', 'categories.slugable'])
             ->when(! empty($categoryIds), function ($query) use ($categoryIds): void {
                 $query->whereHas('categories', function ($query) use ($categoryIds): void {
-                    $query->whereIn('categories.id', $categoryIds);
+                    $query->whereIn('ev_categories.id', $categoryIds);
                 });
             })
             ->paginate((int) $shortcode->paginate ?: 12);
@@ -287,7 +287,7 @@ class HookServiceProvider extends ServiceProvider
             }
 
             return view($view, [
-                'posts' => get_all_posts(true, (int) theme_option('number_of_posts_in_a_category', 12)),
+                'posts' => ev_get_all_posts(true, (int) theme_option('number_of_posts_in_a_category', 12)),
             ])->render();
         }
 

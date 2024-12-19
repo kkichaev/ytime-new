@@ -48,6 +48,10 @@ return [
         ],
 
         'types' => [
+            'date' => 'Date field',
+            'time' => 'Time field',
+            'date_time' => 'Date Time field',
+            'cycle' => 'Cycle',
             'text' => 'Text field',
             'textarea' => 'Textarea',
             'number' => 'Number',

@@ -138,6 +138,10 @@
                     <select class="form-control change-field-type">
                         <optgroup label="{{ trans('plugins/custom-field::base.form.groups.basic') }}">
                             <option value="text" selected="selected">{{ trans('plugins/custom-field::base.form.types.text') }}</option>
+                            <option value="time">{{ trans('plugins/custom-field::base.form.types.time') }}</option>
+                            <option value="date">{{ trans('plugins/custom-field::base.form.types.date') }}</option>
+                            <option value="date-time">{{ trans('plugins/custom-field::base.form.types.date-time') }}</option>
+                            <option value="cycle">{{ trans('plugins/custom-field::base.form.types.cycle') }}</option>
                             <option value="textarea">{{ trans('plugins/custom-field::base.form.types.textarea') }}</option>
                             <option value="number">{{ trans('plugins/custom-field::base.form.types.number') }}</option>
                             <option value="email">{{ trans('plugins/custom-field::base.form.types.email') }}</option>

@@ -49,7 +49,7 @@ class HookServiceProvider extends ServiceProvider
             }
 
             if (defined('POST_MODULE_SCREEN_NAME')) {
-                if ($object instanceof Post) {
+                if ($object instanceof Post || $object instanceof \Botble\EventsPlaces\Models\Post) {
                     $relatedCategoryIds = $object->categories()->allRelatedIds()->toArray();
                     add_custom_fields_rules_to_check([
                         $reference . '_post_with_related_category' => $relatedCategoryIds,

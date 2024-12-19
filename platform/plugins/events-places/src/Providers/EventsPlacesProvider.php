@@ -10,6 +10,9 @@ use Botble\Base\PanelSections\PanelSectionItem;
 use Botble\Base\Supports\DashboardMenuItem;
 use Botble\Base\Supports\ServiceProvider;
 use Botble\Base\Traits\LoadAndPublishDataTrait;
+use Botble\CustomField\Facades\CustomField as CustomFieldFacade;
+use Botble\DataSynchronize\PanelSections\ExportPanelSection;
+use Botble\DataSynchronize\PanelSections\ImportPanelSection;
 use Botble\EventsPlaces\Models\Category;
 use Botble\EventsPlaces\Models\Post;
 use Botble\EventsPlaces\Models\Tag;
@@ -19,8 +22,6 @@ use Botble\EventsPlaces\Repositories\Eloquent\TagRepository;
 use Botble\EventsPlaces\Repositories\Interfaces\CategoryInterface;
 use Botble\EventsPlaces\Repositories\Interfaces\PostInterface;
 use Botble\EventsPlaces\Repositories\Interfaces\TagInterface;
-use Botble\DataSynchronize\PanelSections\ExportPanelSection;
-use Botble\DataSynchronize\PanelSections\ImportPanelSection;
 use Botble\Language\Facades\Language;
 use Botble\LanguageAdvanced\Supports\LanguageAdvancedManager;
 use Botble\PluginManagement\Events\DeactivatedPlugin;
@@ -82,7 +83,7 @@ class EventsPlacesProvider extends ServiceProvider
         });
 
         SlugHelper::registering(function (): void {
-            SlugHelper::registerModule(Post::class, fn () => trans('plugins/events-places::base.events-places'));
+            SlugHelper::registerModule(Post::class, fn () => trans('plugins/events-places::base.events-places-posts'));
             SlugHelper::registerModule(Category::class, fn () => trans('plugins/events-places::base.events-and-places_categories'));
             SlugHelper::registerModule(Tag::class, fn () => trans('plugins/events-places::base.events-and-places_tags'));
 
@@ -132,7 +133,7 @@ class EventsPlacesProvider extends ServiceProvider
         PanelSectionManager::default()->beforeRendering(function (): void {
             PanelSectionManager::registerItem(
                 SettingOthersPanelSection::class,
-                fn () => PanelSectionItem::make('blog')
+                fn () => PanelSectionItem::make('events-places')
                     ->setTitle(trans('plugins/events-places::base.settings.title'))
                     ->withIcon('ti ti-file-settings')
                     ->withDescription(trans('plugins/events-places::base.settings.description'))
@@ -226,5 +227,53 @@ class EventsPlacesProvider extends ServiceProvider
                 }
             }
         );
+
+        app()->booted(function () {
+            if (defined('CUSTOM_FIELD_MODULE_SCREEN_NAME')) {
+                CustomFieldFacade::registerRuleGroup('events-places')
+                ->registerRule('events-places', trans('plugins/custom-field::rules.category'), Category::class, function () {
+                    return $this->getBlogCategoryIds();
+                })
+                ->registerRule(
+                    'events-places',
+                    trans('plugins/custom-field::rules.post_with_related_category'),
+                    Post::class . '_post_with_related_category',
+                    function () {
+                        return $this->getBlogCategoryIds();
+                    }
+                )
+                ->registerRule(
+                    'events-places',
+                    trans('plugins/custom-field::rules.post_format'),
+                    Post::class . '_post_format',
+                    function () {
+                        $formats = [];
+                        foreach (get_post_formats() as $key => $format) {
+                            $formats[$key] = $format['name'];
+                        }
+
+                        return $formats;
+                    }
+                )
+                ->expandRule('other', trans('plugins/custom-field::rules.model_name'), 'model_name', function () {
+                    return [
+                        Post::class => trans('plugins/custom-field::rules.model_name_post'),
+                        Category::class => trans('plugins/custom-field::rules.model_name_category'),
+                    ];
+                });
+            }
+        });
+    }
+
+    protected function getBlogCategoryIds(): array
+    {
+        $categories = ev_get_categories();
+
+        $categoriesArr = [];
+        foreach ($categories as $row) {
+            $categoriesArr[$row->id] = $row->indent_text . ' ' . $row->name;
+        }
+
+        return $categoriesArr;
     }
 }

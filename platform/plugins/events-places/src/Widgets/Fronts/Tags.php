@@ -24,7 +24,7 @@ class Tags extends AbstractWidget
     protected function data(): array|Collection
     {
         return [
-            'tags' => get_popular_tags((int) $this->getConfig('number_display')),
+            'tags' => ev_get_popular_tags((int) $this->getConfig('number_display')),
         ];
     }
 

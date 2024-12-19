@@ -33,7 +33,7 @@ class PostController extends BaseController
         return PostForm::create()->renderForm();
     }
 
-    public function store(PostRequest $request, StoreTagService $tagService, StoreCategoryService $categoryService)
+    public function store(PostRequest $request, StoreTagService $tagService, EvStoreCategoryService $categoryService)
     {
         $this->processRequestData($request);
 

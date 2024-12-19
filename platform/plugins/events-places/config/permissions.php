@@ -2,7 +2,7 @@
 
 return [
     [
-        'name' => 'Blog',
+        'name' => 'Event and places',
         'flag' => 'plugins.events-places',
         'parent_flag' => 'core.cms',
     ],

@@ -134,6 +134,14 @@ class MemberServiceProvider extends ServiceProvider
                 )
                 ->registerItem(
                     DashboardMenuItem::make()
+                        ->id('cms-member-events-places-posts')
+                        ->priority(20)
+                        ->name('plugins/events-places::posts.posts')
+                        ->url(fn () => route('public.member.ev-posts.index'))
+                        ->icon('ti ti-article')
+                )
+                ->registerItem(
+                    DashboardMenuItem::make()
                         ->id('cms-member-settings')
                         ->priority(30)
                         ->name('plugins/member::dashboard.header_settings_link')
